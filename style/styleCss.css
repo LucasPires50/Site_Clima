@@ -1,0 +1,23 @@
+
+.grande {
+    font-size: 400%;
+}
+
+/*Impotando fonte para o progeto*/
+@font-face{
+    font-family: Oswald;
+    src: url('../Fonte/Oswald-Regular.ttf');
+}
+
+.fundoCol{
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 3px solid #000000;
+}
+
+.corfundo{
+    background-color: #e3f2fd;
+    font-family: Oswald;
+    font-size: 150%
+}

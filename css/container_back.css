@@ -1,0 +1,23 @@
+.container_back{
+    background-color: #4F4F4F;
+}
+
+.text{
+    color: #ffffff;
+}
+
+.navbar{
+    background-color: rgb(65,105,225);
+}
+
+.navbarRGBA{
+    background-color: rgba(192,192,192, 0.3);
+}
+
+.rodapé{
+    background-color: rgb(220,220,220);
+}
+
+.btn20{
+    background-color: rgba(0,191,255,0.5);
+}
