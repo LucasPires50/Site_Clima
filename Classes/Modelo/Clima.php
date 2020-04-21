@@ -19,6 +19,7 @@ class Clima {
     public $sensacaoTermica;
     public $descricao;
     public $icone;
+    public $acessos;
 
     //Converte de kelvin para celsius
     public function getTemperaturaCelsius(): float {
@@ -64,6 +65,7 @@ class Clima {
         $timestamp = $this->porDoSol;
         return date('H:i', $timestamp);
     }
+    
 
 }
 

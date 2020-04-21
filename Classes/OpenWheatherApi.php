@@ -2,6 +2,7 @@
 
 require 'vendor/autoload.php';
 require 'Modelo/Clima.php';
+require 'acessos.php';
 
 use GuzzleHttp\Client;
 use Classes\Modelo\Clima;
@@ -37,54 +38,55 @@ class OpenWheatherApi {
 
         //Converter para objeto
         $objClima = json_decode($clima);
-        
+
         //objeto serializado, transfomado em um string, para gravação no disco
         $objSerializado = serialize($objClima);
-        
+
         $caminhoArquivo = "./cache/clima.txt";
-        
+
         //comando para gravaçãdo arquivo serilializado para o disco
         file_put_contents($caminhoArquivo, $objSerializado);
-        
+
         return $objClima;
     }
-    
+
     public function getClima(): Clima {
+        $acesso = new acesso();
+        $acesso->newAcesso();
         //$objGenerico = $this->getDataWheather();
         //Recuperando os dados de atualização
         $conteudoAtualização = file_get_contents("./cache/controle_cache.txt");
-        
+
         //transforma a string em array
         $arrayAtualização = explode("#", $conteudoAtualização);
-        
+
         $dataAtualização = $arrayAtualização[0];
-        
+
         $dataAtual = time();
-        
-        if($dataAtual - $dataAtualização >= 300){
+
+        if ($dataAtual - $dataAtualização >= 300) {
             //atualiza o cache 
             $objGenerico = $this->getDataWheather();
             $arrayAtualização [0] = time();
-            $dadosArquivo = $arrayAtualização[0]."#".$arrayAtualização[1];
+            $dadosArquivo = $arrayAtualização[0] . "#" . $arrayAtualização[1];
             file_put_contents("./cache/controle_cache.txt", $dadosArquivo);
-        }else{
+        } else {
             // se não busca a partir do chace
-            
             //os dados do disco
             $conteudoAtualização = file_get_contents("./cache/controle_cache.txt");
-            
+
             //deserializa os dados
             $objGenerico = unserialize($conteudoArquivo);
         }
-        
+
         //ler o arquivo no disco de desearilizar o arquivo e mandar para a tela
         $conteudoArquivo = file_get_contents("./cache/clima.txt");
-        
+
         // deserialazando o arquivo, e agora está lendo o arqivo direto do disco do pc
         $objGenerico = unserialize($conteudoArquivo);
-        
+
         $cli = new Clima();
-        
+
         $cli->temperatura = $objGenerico->main->temp;
         $cli->temperaturaMaxima = $objGenerico->main->temp_max;
         $cli->temperaturaMinima = $objGenerico->main->temp_min;
@@ -98,7 +100,8 @@ class OpenWheatherApi {
         $cli->sensacaoTermica = $objGenerico->main->feels_like;
         $cli->descricao = $objGenerico->weather[0]->description;
         $cli->icone = $objGenerico->weather[0]->icon;
-        
+        $cli->acessos = $acesso->getAcessos();
+
         return $cli;
     }
 

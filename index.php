@@ -23,6 +23,7 @@ $clima = $openWheater->getClima();
         <link href="css/container_back.css" rel="stylesheet" type="text/css">
         <link href="style/styleCss.css" rel="stylesheet" type="text/css"/>
 
+
     </head>
     <body class="corfundo">
 
@@ -53,6 +54,7 @@ $clima = $openWheater->getClima();
                         <div class="col-md-6 themed-grid-col "><img src="img/icons8-sensação-térmica-48.png"><?php echo $clima->getTemperaturaCelsiusSensacaoTermica() . "ºC / " . $clima->getTemperaturaFahrenheitSensacaoTermica() . "ºF Sensação Térmica" ?></div>
                         <div class="col-md-6 themed-grid-col "><img src="img/icons8-nascer-do-sol-48.png"><?php echo $clima->getNascerDoSol() . " Nascer do Sol" ?></div>
                         <div class="col-md-6 themed-grid-col "><img src="img/icons8-pôr-do-sol-48.png"><?php echo $clima->getPorDoSol() . " Pôr do Sol" ?></div>
+
                     </div>
                 </div>
                 <div class="col-md-4 themed-grid-col text-center grande "><?php echo $clima->getTemperaturaCelsius() . " ºC" . "<hr>" . $clima->getTemperaturaFahrenheit() . " ºF" ?></div>
@@ -64,10 +66,13 @@ $clima = $openWheater->getClima();
                     <li class="list-inline-item"><a href="#">Privacy</a></li>
                     <li class="list-inline-item"><a href="#">Terms</a></li>
                     <li class="list-inline-item"><a href="#">Support</a></li>
+                    
+                </ul>
+                <ul class="list-inline">
+                  <li a href="#">Contagem de acesso: <?php echo $clima->acessos ?></a></li>  
                 </ul>
             </footer>
         </div>
-
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
